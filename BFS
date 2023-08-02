@@ -1,0 +1,47 @@
+//BFS 
+#include<iostream>
+#include<algorithm>
+#include<queue>
+using namespace std;
+int main()
+{
+	int p=0;
+	int x;cin>>x;
+	queue<int>saf;
+	int n;cin>>n;
+	int m;cin>>m;
+	vector<int>graf[n];
+	for(int i=0;i<m;i++)
+	{
+		int a,b;
+		cin>>a>>b;
+		graf[a].push_back(b);
+		graf[b].push_back(a);
+	}
+	for(int i=0;i<n;i++)
+	{
+		for(int j=0;j<graf[i].size();j++)
+		{
+			saf.push(graf[i][j]);
+		}
+	}
+	for(int i=0;i<n;i++)
+	{
+		int u=saf.front();
+		if(u==x)
+		{
+			p=1;
+			break;
+		}
+		saf.pop();
+	}
+	if(p==1)
+	{
+		cout<<"YES"<<"\n";
+	}
+	else
+	{
+		cout<<"NO"<<"\n";
+	}
+	return 0;
+}
