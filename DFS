@@ -1,0 +1,53 @@
+//dfs
+#include<iostream>
+#include<vector>
+#include<stack>
+using namespace std;
+int visited[100];
+int main()
+{
+	int n,m;
+	cin>>n>>m;
+	vector<int>graf[n+1];
+	for(int i=0;i<m;i++)
+	{
+		int x,y;
+		cin>>x>>y;
+		graf[x].push_back(y);
+		graf[y].push_back(x);
+	}
+	stack<int>stk;
+	int y1,y2;
+	cin>>y1>>y2;
+	visited[y1]=1;
+	stk.push(y1);
+	while(!stk.empty())
+	{
+		int p=0;
+		int node=stk.top();
+		for(int i=0;i<graf[node].size();i++)
+		{
+			int neighbor=graf[node][i];
+			if(visited[neighbor]==0)
+			{
+				stk.push(neighbor);
+				visited[neighbor]=1;
+				p=1;
+				break;
+			}
+		}
+		if(p==0)
+		{
+			stk.pop();
+		}
+	}
+	if(visited[y2]==1)
+	{
+		cout<<"YES";
+	}
+	else
+	{
+		cout<<"NO";
+	}
+	return 0;
+}
