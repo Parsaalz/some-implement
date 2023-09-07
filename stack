@@ -1,0 +1,57 @@
+//tamrin stack oop
+#include<iostream>
+using namespace std;
+int number[1000];
+class stack
+	{
+		public:
+			int index=-1;
+			int push(int adad)
+			{
+				index++;
+				number[index]=adad;
+			}
+			int pop()
+			{
+				if(index==-1)
+				{
+					cout<<"we cant do that its empty"<<"\n";
+				}
+				else
+				{
+					index--;	
+				}	
+			}	
+			int top()
+			{
+				if(index==-1)
+				{
+					cout<<"empty";
+				}
+				else
+				{
+					cout<<number[index];	
+				}
+			}
+			int size()
+			{
+				cout<<index+1<<"\n";
+			}
+	};
+int main()
+{
+	stack p1;
+	p1.push(10);
+	p1.push(20);
+	p1.push(30);
+	p1.pop();
+	p1.pop();
+	p1.pop();
+	p1.pop();
+	p1.pop();
+	p1.pop();
+	p1.pop();
+	p1.pop();
+	p1.size();
+	return 0;
+}
