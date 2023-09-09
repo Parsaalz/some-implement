@@ -1,0 +1,43 @@
+//queue with oop
+#include<iostream>
+using namespace std;
+class queue
+{
+	public:
+		int hash[100];
+		int front=0;
+		int rear=0;
+		int inque(int adad)
+		{
+			if(front==99)
+			{
+				cout<<"its full"<<"\n";
+			}
+			else
+			{
+				hash[front]=adad;
+				front++;	
+			}
+		}
+		int deque()
+		{
+			if(rear==front)
+			{
+				cout<<"its empty"<<"\n";
+			}
+			else
+			{
+				rear++;	
+			}
+		}	
+};
+int main()
+{
+	queue saf;
+	saf.inque(20);
+	saf.inque(30);
+	saf.deque();
+	saf.deque();
+	saf.deque();
+	return 0;
+}
