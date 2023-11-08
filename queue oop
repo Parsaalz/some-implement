@@ -1,0 +1,143 @@
+// queue be tor kamel
+#include<bits/stdc++.h>
+using namespace std;
+class queue1{
+	int *array;
+	int front=0;
+	int rear=0;
+	int maximum_capacity;
+	public:
+		queue1(int size)
+		{
+			array=new int[size];
+			maximum_capacity=size;
+		}
+		void enqueue(int n)
+		{
+			if(front==maximum_capacity-1)
+			{
+				cout<<"the queue is full";
+			}
+			else
+			{
+				array[front]=n;
+				front++;
+			}
+		}
+		void dequeue()
+		{
+			if(rear==front)
+			{
+				cout<<"the queue is empty"<<"\n";
+			}
+			else
+			{
+				rear++;
+			}
+		}
+		int print_all()
+		{
+			for(int i=rear;i<front;i++)
+			{
+				return array[i];
+			}
+			cout<<"\n";
+		}
+		void push_multiple(int* numbers,int m)
+		{
+			int u=maximum_capacity-1-front;
+			if(u>=m)
+			{
+				for(int i=0;i<m;i++)
+				{
+					array[front]=numbers[i];
+					front++;
+				}
+			}
+			else
+			{
+				cout<<"we cant do that"<<"\n";
+			}
+		}
+		void pop_multiple(int n)
+		{
+			if(front==n)
+			{
+				rear+=n;
+			}
+			else
+			{
+				cout<<"we cant do that"<<"\n";
+			}
+		}
+		void reset()
+		{
+			rear=0;
+			front=0;
+		}
+		int size()
+		{
+			return front-rear;
+		}
+		int min()
+		{
+			int min1=0;
+			if(rear==front)
+			{
+				cout<<"no item in queue"<<"\n";
+			}
+			else
+			{
+				for(int i=rear;i<front;i++)
+				{
+					if(min1==0)
+					{
+						min1=array[i];
+					}
+					else if(min1>array[i])
+					{
+						min1=array[i];
+					}
+				}
+				return min1;
+			}
+		}
+		bool compare(queue1 obj)
+		{
+			int u1=obj.front-obj.rear;
+			int u2=front-rear;
+			if(u1==u2)
+			{
+				int p=1;
+				int i=rear;
+				int j=obj.rear;
+				while(i!=front)
+				{
+					if(array[i]!=obj.array[j])
+					{
+						p=0;
+						break;
+					}
+					i++;
+					j++;
+				}
+				if(p==1)
+				{
+					return 1;
+				}
+				else
+				{
+					return 0;
+				}
+			}
+			else
+			{
+				return 0;
+			}
+		}
+};
+int main()
+{
+	
+	return 0;
+}
