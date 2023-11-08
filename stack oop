@@ -1,0 +1,191 @@
+//stack be tor kamel
+#include<iostream>
+using namespace std;
+class stack{
+  int index=0;
+  int *array;
+  int *minimum;
+  int index_min=0;
+  int top=-1;
+  int size=index;
+  int maximum_capacity;
+  public:
+  stack(int size)
+  {
+    array=new int[size];
+    minimum=new int[size];
+    maximum_capacity=size;
+  }
+    void push(int number)
+    {
+      if(index==maximum_capacity-1)
+      {
+        cout<<"its full you cant push new number please pop it  for push  again"<<"\n";
+      }
+      else
+      {
+        array[index]=number;
+        index++;
+        top=index-1;
+        if(index_min==0)
+        {
+          minimum[index_min]=array[index-1];
+          index_min++;
+        }
+        else
+        {
+          if(minimum[index_min-1]>=array[index-1])
+          {
+        	minimum[index_min]=array[index-1];
+            index_min++;
+          }
+        }
+      }
+    }
+    void pop()
+    {
+      if(index==0)
+      {
+        cout<<"this stack is empty please push some numbers to it"<<"\n";
+      }
+      else
+      {
+        if(minimum[index_min-1]==array[index-1])
+        {
+          index_min--;
+        }
+        index--;  
+        top--;
+      }
+    }
+    void push_multiple(int* numbers,int m)
+    {
+      if(m<maximum_capacity-index)
+      {
+        for(int i=0;i<m;i++)
+        {
+          array[index]=numbers[i];
+          if(minimum[index_min-1]<=numbers[i])
+          {
+            minimum[index_min]=numbers[i];
+            index++;
+          }
+          index++;
+          top=index-1;
+        }
+      }
+      else
+      {
+        cout<<"we cant import this array";
+      }
+    }
+    void pop_multiple(int n)
+    {
+      if(index>=n)
+      {
+        for(int i=index-1;i>=index-n;i--)
+        {
+          if(array[i]==minimum[index_min-1])
+          {
+            index_min--;
+          }
+        }
+        index=index-n;
+        top-=top-n;
+      }
+      else
+      {
+        cout<<"We don't have enough numbers";
+      }
+    }
+    int print_top()
+    {
+      if(top==-1)
+      {
+      	cout<<"its empty";
+	  }
+      else
+      {
+        return array[index-1];
+      }
+    }
+    int print_min()
+    {
+      if(index_min==0)
+      {
+        cout<<"its empty";
+      }
+      else
+      {
+        return minimum[index_min-1];
+      }
+    }
+    int print_size()
+    {
+      if(index==0)
+      {
+        return 0;
+      }
+      else
+      {
+        return index;
+      }
+    }
+    bool compare(stack obj)
+    {
+      int p=0;
+      if(index>=obj.index)
+      {
+        for(int i=0;i<obj.index;i++)
+        {
+          if(array[i]!=obj.array[i])
+          {
+            break;
+          }
+          if(i==obj.index-1)
+          {
+            p=1;
+          }
+        }
+      }
+      else
+      {
+        for(int i=0;i<index;i++)
+        {
+          if(array[i]!=obj.array[i])
+          {
+            break;
+          }
+          if(i==index-1)
+          {
+            p=1;
+          }
+        }
+      }
+      if(p==0)
+      {
+        return 0;
+      }
+      else
+      {
+        return 1;
+      }
+    }
+    void reset()
+    {
+    	index=0;
+    	index_min=0;
+    	top=-1;
+    	size=0;
+	}
+};
+int main()
+{
+  stack parsa=stack(10);
+  int elham[9]={0,1,2,3,4,5,6,7,8};
+  parsa.push_multiple(elham,9);
+  parsa.reset();
+  parsa.push(10);
+  cout<<parsa.print_size();
+  return 0;
+}
