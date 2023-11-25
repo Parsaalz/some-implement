@@ -1,0 +1,143 @@
+//queue charkheshi
+// eshkal dar compare enqueue
+#include <iostream>
+using namespace std;
+class saf_ch{
+    int *arr;
+    int size;
+    int rear=0;
+    int front=0;
+public:
+    saf_ch(int n)
+    {
+        size=n;
+        arr=new int[n];
+        for(int i=0;i<size;i++)
+        {
+            arr[i]=0;
+        }
+    }
+    void enqueue(int item)
+    {
+        if(front==(rear+1)%size)
+        {
+            cout<<"we cant do that your queue is full"<<"\n";
+        }
+        else
+        {
+            rear=(rear+1)%size;
+            arr[rear]=item;
+        }
+    }
+    void dequeue()
+    {
+        if(front==rear)
+        {
+            cout<<"your queue is empty"<<"\n";
+        }
+        else
+        {
+            front=(front+1)%size;
+        }
+    }
+    int size_array()
+    {
+        if(rear>=front)
+        {
+            return rear-front;
+        }
+        return ((size-front)-1)+(rear+1);
+    }
+//    void enqueue_multiple(int* f,int n)
+//    {
+//        int s;
+//        if(front>rear)
+//        {
+//            s=(size-((size-front)-1)+(rear+1))-1;
+//        }
+//        else
+//        {
+//            s=(((size-rear)-1)+front);
+//        }
+//        if(n>s)
+//        {
+//            cout<<"we dont have space"<<"\n";
+//        }
+//        else
+//        {
+//            int f=front;int r=rear;
+//            int j=0;
+//            while(((r+1)%size)!=f)
+//            {
+//                r=(r+1)%size;
+//                arr[r]=f[j];
+//                j++;
+//            }
+//        }
+//    }
+    void dequeue_multiple(int n)
+    {
+        if(this->size_array()>=n)
+        {
+            for(int i=0;i<n;i++)
+            {
+                front=(front+1)%size;
+            }
+        }
+        else
+        {
+            cout<<"we dont have "<<n<<" elements in our queue"<<"\n";
+        }
+    }
+    bool compare(saf_ch obj)
+    {
+        int f1,r1;
+        f1=front;r1=rear;
+        int f2,r2;
+        f2=obj.front;r2=obj.rear;
+        if(size_array()!=obj.size_array())
+        {
+            return 0;
+        }
+        else
+        {
+            int i=f1;
+            int j=f2;
+            int x=0;
+            while(x<obj.size_array())
+            {
+                i=((i+1)%size);
+                j=((j+1)%size);
+                if(obj.arr[j]!=arr[i])
+                {
+                    return 0;
+                }
+                x++;
+            }
+            return 1;
+        }
+    }
+    void  show_saf()
+    {
+        int f=front;int r=rear;
+        while(f!=r)
+        {
+            f=(f+1)%size;
+            cout<<arr[f]<<"  ";
+        }
+    }
+};
+int main()
+{
+    saf_ch parsa=saf_ch(5);
+    saf_ch ali=saf_ch(5);
+    parsa.enqueue(10);
+    parsa.enqueue(20);
+    parsa.enqueue(30);
+    parsa.enqueue(40);
+    ali.enqueue(10);
+    ali.enqueue(20);
+    ali.enqueue(30);
+    parsa.compare(ali);
+    return 0;
+}
