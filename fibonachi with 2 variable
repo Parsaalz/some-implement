@@ -16,7 +16,7 @@ int main()
     {
         int p=0;
         cout<<0<<" ";
-        while(counter!=k+1)
+        while(counter!=k)
         {
             if(p==0)
             {
