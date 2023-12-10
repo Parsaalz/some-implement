@@ -1,0 +1,37 @@
+//fibonachi with 2 variable
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+
+    int n,m;
+    n=0,m=1;
+    int k;cin>>k;
+    int counter=1;
+    if(k==0)
+    {
+        cout<<0<<" ";
+    }
+    else
+    {
+        int p=0;
+        cout<<0<<" ";
+        while(counter!=k+1)
+        {
+            if(p==0)
+            {
+                cout<<m<<" ";
+                p=1;
+                n+=m;
+            }
+            else
+            {
+                cout<<n<<" ";
+                p=0;
+                m+=n;
+            }
+            counter++;
+        }
+    }
+    return 0;
+}
