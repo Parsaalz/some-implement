@@ -1,0 +1,20 @@
+//peyda kardan tedad magsoom haye yek adad be ravesh sqrt
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    int x;cin>>x;
+    int y=sqrt(x);
+    vector<int>magsoom;
+    for(int i=1;i<=y;i++)
+    {
+        if(x%i==0)
+        {
+            magsoom.push_back(i);
+            magsoom.push_back(x/i);
+        }
+    }
+    cout<<magsoom.size();
+    return 0;
+}
