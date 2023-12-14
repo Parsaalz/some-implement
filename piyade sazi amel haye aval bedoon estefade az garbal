@@ -1,0 +1,28 @@
+//piyade sazi amel haye aval bedoon estefade az garbal
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+int main()
+{
+    int x;cin>>x;
+    int y=sqrt(x);
+    vector<pair<int,int>>adad;
+    for(int i=2;i<=y;i++)
+    {
+        int counter=0;
+        if(x%i==0)
+        {
+            while (x % i == 0)
+            {
+                x=x/i;
+                counter++;
+            }
+            adad.push_back(make_pair(i,counter));
+        }
+    }
+    for(auto it :adad)
+    {
+        cout<<it.first<<"==>"<<it.second<<"\n";
+    }
+    return 0;
+}
