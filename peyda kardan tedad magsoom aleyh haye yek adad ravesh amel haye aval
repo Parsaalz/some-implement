@@ -1,0 +1,47 @@
+//peyda kardan tedad magsoom aleyh haye yek adad ravesh amel haye aval
+#include<bits/stdc++.h>
+#define ll long long
+using namespace std;
+int garbal[1000000];
+int main()
+{
+    int x;cin>>x;
+    garbal[0]=1;
+    garbal[1]=1;
+    for(ll i=2;i<1000000;i++)
+    {
+        if(garbal[i]!=1)
+        {
+            for (ll j = i * i; j < 1000000; j += i)
+            {
+                garbal[j] = 1;
+            }
+        }
+    }
+
+    vector<pair<int,int>>first_primes;
+    int y=sqrt(x);
+    for(int i=2;i<=y;i++)
+    {
+        int counter=0;
+        if(garbal[i]==0)
+        {
+            while(x%i==0 && x!=1)
+            {
+                x=x/i;
+                counter++;
+            }
+            if(counter>0)
+            {
+                first_primes.push_back(make_pair(i, counter));
+            }
+        }
+    }
+    int magsoom=1;
+    for(int i=0;i<first_primes.size();i++)
+    {
+        magsoom*=(first_primes[i].second+1);
+    }
+    cout<<magsoom;
+    return 0;
+}
