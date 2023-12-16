@@ -1,0 +1,57 @@
+//gcd ravesh dovom bardashtan adad kuchektar va peyda kardan bozorgtarim magsoom 
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int x,y;
+    cin>>x>>y;
+    int magsoom_aleyh=0;
+    if(x<y)
+    {
+        for(int i=1;i<=sqrt(x);i++)
+        {
+            if(x%i==0)
+            {
+                if(y%i==0)
+                {
+                    if(magsoom_aleyh<i)
+                    {
+                        magsoom_aleyh=i;
+                    }
+                }
+                if(y%(x/i)==0)
+                {
+                    if(magsoom_aleyh<(x/i))
+                    {
+                        magsoom_aleyh=(x/i);
+                    }
+                }
+            }
+        }
+    }
+    else
+    {
+        for(int i=1;i<=sqrt(y);i++)
+        {
+            if(y%i==0)
+            {
+                if(x%i==0)
+                {
+                    if(magsoom_aleyh<i)
+                    {
+                        magsoom_aleyh=i;
+                    }
+                }
+                if(x%(y/i)==0)
+                {
+                    if(magsoom_aleyh<(y/i))
+                    {
+                        magsoom_aleyh=(y/i);
+                    }
+                }
+            }
+        }
+    }
+    cout<<magsoom_aleyh;
+    return 0;
+}
