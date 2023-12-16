@@ -1,0 +1,94 @@
+//lcm be ravesh amel haye aval
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int x,y;
+    cin>>x>>y;
+    vector<pair<int,int>>amel1;
+    vector<pair<int,int>>amel2;
+    int z=sqrt(x);
+    int d=sqrt(y);
+    for(int i=2;i<=z;i++)
+    {
+        if(x%i==0)
+        {
+            int counter=0;
+            while(x%i==0 && x!=0)
+            {
+                counter++;
+                x/=i;
+            }
+            amel1.push_back(make_pair(i,counter));
+        }
+        if(x==0)
+        {
+            break;
+        }
+    }
+    if(x!=0)
+    {
+        amel1.push_back(make_pair(x,1));
+    }
+    for(int i=2;i<=d;i++)
+    {
+        if(y%i==0)
+        {
+            int counter=0;
+            while(y%i==0 && y!=0)
+            {
+                counter++;
+                y/=i;
+            }
+            amel2.push_back(make_pair(i,counter));
+        }
+        if(y==0)
+        {
+            break;
+        }
+    }
+    if(y!=0)
+    {
+        amel2.push_back(make_pair(y,1));
+    }
+    int i=0;int j=0;
+    int lcm=1;
+    while(i<amel1.size() && j<amel2.size())
+    {
+        if(amel1[i].first==amel2[j].first)
+        {
+            if(amel1[i].second>amel2[j].second)
+            {
+                lcm*=pow(amel1[i].first,amel1[i].second);
+            }
+            else
+            {
+                lcm*=pow(amel2[j].first,amel2[j].second);
+            }
+            i++;
+            j++;
+        }
+        else if(amel1[i].first<amel2[j].first)
+        {
+            lcm*=pow(amel1[i].first,amel1[i].second);
+            i++;
+        }
+        else if(amel1[i].first>amel2[j].first)
+        {
+            lcm*=pow(amel2[j].first,amel2[j].second);
+            j++;
+        }
+    }
+    while(i<amel1.size())
+    {
+        lcm*=pow(amel1[i].first,amel1[i].second);
+        i++;
+    }
+    while(j<amel2.size())
+    {
+        lcm*=pow(amel2[j].first,amel2[j].second);
+        j++;
+    }
+    cout<<lcm;
+    return 0;
+}
