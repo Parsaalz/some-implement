@@ -12,7 +12,10 @@ int main()
         if(x%i==0)
         {
             magsoom.push_back(i);
-            magsoom.push_back(x/i);
+            if(x/i!=i)
+            {
+                magsoom.push_back(x/i);
+            }
         }
     }
     cout<<magsoom.size();
