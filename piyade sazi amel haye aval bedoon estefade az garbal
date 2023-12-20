@@ -20,6 +20,10 @@ int main()
             adad.push_back(make_pair(i,counter));
         }
     }
+    if(x!=1)
+    {
+        adad.push_back(make_pair(x,1));
+    }
     for(auto it :adad)
     {
         cout<<it.first<<"==>"<<it.second<<"\n";
