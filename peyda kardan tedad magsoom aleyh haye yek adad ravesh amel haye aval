@@ -37,6 +37,10 @@ int main()
             }
         }
     }
+    if(x!=1)
+    {
+        first_primes.push_back(make_pair(x,1));
+    }
     int magsoom=1;
     for(int i=0;i<first_primes.size();i++)
     {
