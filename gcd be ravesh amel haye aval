@@ -26,6 +26,10 @@ int main()
             break;
         }
     }
+    if(x!=1)
+    {
+        amel1.push_back(make_pair(x,1));
+    }
     for(int i=2;i<=d;i++)
     {
         if(y%i==0)
@@ -42,6 +46,10 @@ int main()
         {
             break;
         }
+    }
+    if(y!=1)
+    {
+        amel2.push_back(make_pair(y,1));
     }
     int i=0;int j=0;
     int gcd=1;
