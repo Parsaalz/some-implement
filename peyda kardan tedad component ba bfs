@@ -1,0 +1,43 @@
+//peyda kardan tedad component ba bfs
+#include<bits/stdc++.h>
+using namespace std;
+int visited[100000];
+vector<int>nodes[100000];
+queue<int>saf;
+int  bfs(int node,int n)
+{
+    int counter=0;
+    for(int i=0;i<n;i++)
+    {
+        if (visited[i] == 0)
+        {
+            counter++;
+            visited[node] = 1;
+            saf.push(node);
+            while (!saf.empty())
+            {
+                for (int i = 0; i < nodes[saf.front()].size(); i++) {
+                    if (visited[nodes[saf.front()][i]] == 0) {
+                        visited[nodes[saf.front()][i]] = 1;
+                        saf.push(nodes[saf.front()][i]);
+                    }
+                }
+                saf.pop();
+            }
+        }
+    }
+    return counter;
+}
+int main()
+{
+    int n,e;
+    cin>>n>>e;
+    while(e--)
+    {
+        int x,y;cin>>x>>y;
+        nodes[x].push_back(y);
+        nodes[y].push_back(x);
+    }
+    cout<<bfs(0,n);
+    return 0;
+}
