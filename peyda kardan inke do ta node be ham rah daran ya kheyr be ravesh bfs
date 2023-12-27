@@ -1,0 +1,46 @@
+//peyda kardan inke do ta node be ham rah daran ya kheyr be ravesh bfs
+#include<bits/stdc++.h>
+using namespace std;
+int visited[100000];
+vector<int>nodes[100000];
+queue<int>saf;
+void bfs(int node)
+{
+    visited[node]=1;
+    saf.push(node);
+    while(!saf.empty())
+    {
+        for(int i=0;i<nodes[saf.front()].size();i++)
+        {
+            if(visited[nodes[saf.front()][i]]==0)
+            {
+                visited[nodes[saf.front()][i]] = 1;
+                saf.push(nodes[saf.front()][i]);
+            }
+        }
+        saf.pop();
+    }
+}
+int main()
+{
+    int n,e;
+    cin>>n>>e;
+    while(e--)
+    {
+        int x,y;cin>>x>>y;
+        nodes[x].push_back(y);
+        nodes[y].push_back(x);
+    }
+    int x1,y1;
+    cin>>x1>>y1;
+    bfs(x1);
+    if(visited[y1]==1)
+    {
+        cout<<"YES";
+    }
+    else
+    {
+        cout<<"NO";
+    }
+    return 0;
+}
