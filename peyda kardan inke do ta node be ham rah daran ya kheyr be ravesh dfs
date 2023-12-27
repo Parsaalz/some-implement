@@ -1,0 +1,39 @@
+//peyda kardan inke do ta node be ham rah daran ya kheyr be ravesh dfs
+#include<bits/stdc++.h>
+using namespace std;
+int visited[100000];
+vector<int>nodes[100000];
+void dfs(int node)
+{
+    visited[node]=1;
+    for(int i=0;i<nodes[node].size();i++)
+    {
+        if(visited[nodes[node][i]]==0)
+        {
+            dfs(nodes[node][i]);
+        }
+    }
+}
+int main()
+{
+    int n,e;
+    cin>>n>>e;
+    while(e--)
+    {
+        int x,y;cin>>x>>y;
+        nodes[x].push_back(y);
+        nodes[y].push_back(x);
+    }
+    int x1,y1;
+    cin>>x1>>y1;
+    dfs(x1);
+    if(visited[y1]==1)
+    {
+        cout<<"YES";
+    }
+    else
+    {
+        cout<<"NO";
+    }
+    return 0;
+}
